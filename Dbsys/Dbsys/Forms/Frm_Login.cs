@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dbsys.AppData;
 
 namespace Dbsys
 {
@@ -34,7 +35,7 @@ namespace Dbsys
                 return;
             }
 
-            UserAccount userLogin = userRepo.GetUserByUsername(txtUsername.Text);
+            USER_ACCOUNT userLogin = userRepo.GetUserByUsername(txtUsername.Text);
             // User exist
             if (userLogin != null)
             {

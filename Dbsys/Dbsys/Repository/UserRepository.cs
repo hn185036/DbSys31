@@ -5,15 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dbsys.AppData;
 
 namespace Dbsys
 {
+    
     public class UserRepository
     {
+        ITDBSYS31Entities db;
+
         private String _connStr;
         public UserRepository()
         {
-            _connStr  = Constant.ConString;
+            //_connStr  = Constant.ConString;
         }
 
         public int NewUser(String a_Username, String a_Pass, ref String outMessage)
@@ -21,18 +25,18 @@ namespace Dbsys
             int retValue = Constant.ERROR;
             try
             {
-                String query = $"INSERT INTO USER_ACCOUNT VALUES('{a_Username}','{a_Pass}','ACTIVE')";
-                using (SqlConnection con = new SqlConnection(_connStr))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.ExecuteNonQuery();
+                db = new ITDBSYS31Entities();
+                // Create new object of USER_ACCOUNT
+                USER_ACCOUNT newUserAcc = new USER_ACCOUNT();
+                newUserAcc.userName = a_Username;
+                newUserAcc.userPassword = a_Pass;
+                newUserAcc.userStatus = "Active";
+                // Call the add() function to insert object
+                db.USER_ACCOUNT.Add(newUserAcc);
+                db.SaveChanges();
 
-                    outMessage = "Success!";
-                    //
-                    retValue = Constant.SUCESS;
-
-                }               
+                outMessage = "Inserted";
+                retValue = Constant.SUCESS;
             }
             catch (Exception ex)
             {
@@ -49,19 +53,17 @@ namespace Dbsys
             int retValue = Constant.ERROR;
             try
             {
-                String query = $"UPDATE USER_ACCOUNT SET userName='{a_Username}', userPassword = '{a_Pass}' WHERE userId = {userId}";
-                using (SqlConnection con = new SqlConnection(_connStr))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.ExecuteNonQuery();
+                db = new ITDBSYS31Entities();
+                // Find the user with id
+                USER_ACCOUNT user = db.USER_ACCOUNT.Where(m => m.userId == userId).FirstOrDefault();
+                // Update the value of the retrieved user
+                user.userName = a_Username;
+                user.userPassword = a_Pass;
 
-                    outMessage = "Updated!";
-                    //
-                    retValue = Constant.SUCESS;
+                db.SaveChanges();       // Execute the update
 
-                }
-
+                outMessage = "Updated";
+                retValue = Constant.SUCESS;
             }
             catch (Exception ex)
             {
@@ -78,19 +80,16 @@ namespace Dbsys
             int retValue = Constant.ERROR;
             try
             {
-                String query = $"DELETE FROM USER_ACCOUNT WHERE userId = {userId}";
-                using (SqlConnection con = new SqlConnection(_connStr))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.ExecuteNonQuery();
 
-                    outMessage = "Deleted!";
-                    //
-                    retValue = Constant.SUCESS;
+                db = new ITDBSYS31Entities();
 
-                }
+                USER_ACCOUNT user = db.USER_ACCOUNT.Where(m => m.userId == userId).FirstOrDefault();
+                // Remove the user
+                db.USER_ACCOUNT.Remove(user);
+                db.SaveChanges();       // Execute the update
 
+                outMessage = "Deleted";
+                retValue = Constant.SUCESS;
             }
             catch (Exception ex)
             {
@@ -102,28 +101,14 @@ namespace Dbsys
 
         }
 
-        public List<UserAccount> ListUsers()
+        public List<vw_all_user_account> ListUsers()
         {
-            List<UserAccount> userList = new List<UserAccount>();
+            List<vw_all_user_account> userList = new List<vw_all_user_account>();
             try
             {
-                String query = $"SELECT * FROM USER_ACCOUNT";
-                using (SqlConnection con = new SqlConnection(_connStr))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        UserAccount user = new UserAccount();
-                        user.userId = (Int32)reader["userId"];
-                        user.userName = reader["userName"] as String;
-                        user.userPassword = reader["userPassword"] as String;
-                        user.userStatus = reader["userStatus"] as String;
+                db = new ITDBSYS31Entities();
 
-                        userList.Add(user);
-                    }
-                }
+                userList = db.vw_all_user_account.ToList();
             }
             catch (Exception ex)
             {
@@ -132,29 +117,14 @@ namespace Dbsys
             return userList;
         }
 
-        public UserAccount GetUserByUsername(String username)
+        public USER_ACCOUNT GetUserByUsername(String username)
         {
-            UserAccount ua = null;
+            USER_ACCOUNT ua = null;
             try
             {
-                String query = $"SELECT TOP 1 * FROM USER_ACCOUNT Where username='{username}'";
-                using (SqlConnection con = new SqlConnection(_connStr))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    //
-                    while (reader.Read())
-                    {
-                        ua = new UserAccount();
-                        ua.userId = (Int32)reader["userId"];
-                        ua.userName = reader["userName"] as String;
-                        ua.userPassword = reader["userPassword"] as String;
-                        ua.userStatus = reader["userStatus"] as String;
-                        
-                    }
-                }
+                db = new ITDBSYS31Entities();
+                // retrieve the user account
+                ua = db.USER_ACCOUNT.Where(m => m.userName == username).FirstOrDefault();
             }
             catch (Exception ex)
             {

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITDBSYS31Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="USER_ACCOUNT">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ITDBSYS31.dbo.vw_all_user_account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_all_user_account">
+    <Key>
+      <PropertyRef Name="User ID" />
+      <PropertyRef Name="Lastname" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="User ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="sp_getUserById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_new_useraccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userUname" Type="nvarchar" Mode="In" />
+    <Parameter Name="userPword" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ITDBSYS31ModelStoreContainer">
+    <EntitySet Name="USER_ACCOUNT" EntityType="Self.USER_ACCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_all_user_account" EntityType="Self.vw_all_user_account" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[vw_all_user_account].[User ID] AS [User ID], 
+[vw_all_user_account].[Lastname] AS [Lastname], 
+[vw_all_user_account].[Password] AS [Password]
+FROM [dbo].[vw_all_user_account] AS [vw_all_user_account]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

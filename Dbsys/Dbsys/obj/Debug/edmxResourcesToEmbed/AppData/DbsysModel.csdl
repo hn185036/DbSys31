@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ITDBSYS31Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ITDBSYS31Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_getUserById" ReturnType="Collection(ITDBSYS31Model.sp_getUserById_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_new_useraccount">
+      <Parameter Name="userUname" Mode="In" Type="String" />
+      <Parameter Name="userPword" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="USER_ACCOUNT" EntityType="ITDBSYS31Model.USER_ACCOUNT" />
+    <EntitySet Name="vw_all_user_account" EntityType="ITDBSYS31Model.vw_all_user_account" />
+  </EntityContainer>
+  <ComplexType Name="sp_getUserById_Result">
+    <Property Type="Int32" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="Lastname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="userAddressId" Nullable="false" />
+    <Property Type="String" Name="userAddressName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="userAddressType" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="userId" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="USER_ACCOUNT">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_all_user_account">
+    <Key>
+      <PropertyRef Name="User_ID" />
+      <PropertyRef Name="Lastname" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

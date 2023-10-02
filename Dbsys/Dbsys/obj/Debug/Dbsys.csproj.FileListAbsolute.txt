@@ -8,3 +8,15 @@ C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Visual Studio 2015\Projec
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Visual Studio 2015\Projects\Class\Dbsys\Dbsys\Dbsys\obj\Debug\Dbsys.pdb
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Visual Studio 2015\Projects\Class\Dbsys\Dbsys\Dbsys\obj\Debug\Dbsys.Frm_UserEntry.resources
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Visual Studio 2015\Projects\Class\Dbsys\Dbsys\Dbsys\obj\Debug\Dbsys.Frm_Login.resources
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\Dbsys.exe.config
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.exe
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.pdb
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.csprojResolveAssemblyReference.cache
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.Frm_UserEntry.resources
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.Frm_Login.resources
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.Properties.Resources.resources
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.csproj.GenerateResource.Cache
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\Dbsys.exe
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\Dbsys.pdb
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\EntityFramework.dll
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\EntityFramework.xml

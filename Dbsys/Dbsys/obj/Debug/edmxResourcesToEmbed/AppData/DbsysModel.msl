@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ITDBSYS31ModelStoreContainer" CdmEntityContainer="ITDBSYS31Entities">
+    <FunctionImportMapping FunctionImportName="sp_getUserById" FunctionName="ITDBSYS31Model.Store.sp_getUserById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ITDBSYS31Model.sp_getUserById_Result">
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="userAddressId" ColumnName="userAddressId" />
+          <ScalarProperty Name="userAddressName" ColumnName="userAddressName" />
+          <ScalarProperty Name="userAddressType" ColumnName="userAddressType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_new_useraccount" FunctionName="ITDBSYS31Model.Store.sp_new_useraccount" />
+    <EntitySetMapping Name="USER_ACCOUNT">
+      <EntityTypeMapping TypeName="ITDBSYS31Model.USER_ACCOUNT">
+        <MappingFragment StoreEntitySet="USER_ACCOUNT">
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_all_user_account">
+      <EntityTypeMapping TypeName="ITDBSYS31Model.vw_all_user_account">
+        <MappingFragment StoreEntitySet="vw_all_user_account">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
