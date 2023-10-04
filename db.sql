@@ -20,14 +20,3 @@ userInfAddress varchar (50) not null default 'No Address',
 userInfEmail varchar not null,
 userId int
 );
-
-
---Creates the user information table
-CREATE TABLE Address(
-userInfoId integer primary key,
-userInfLname varchar (50) not null,
-userInfFname varchar (50) not null,
-userInfAddress varchar (50) not null default 'No Address',
-userInfEmail varchar not null,
-userId int
-);
