@@ -72,7 +72,7 @@
     <Compile Include="AppData\UserAccount.cs">
       <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\userInformation.cs">
+    <Compile Include="AppData\UserInformation.cs">
       <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Frm_UserEntry.cs">

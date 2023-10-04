@@ -34,7 +34,8 @@ namespace Dbsys
                 errorProviderCustom.SetError(txtPassword, "Empty Field!");
                 return;
             }
-
+         
+            // Call the add() function to insert object
             //UserAccount userLogin = userRepo.GetUserByUsername(txtUsername.Text);
             //// User exist
             //if (userLogin != null)
@@ -45,6 +46,11 @@ namespace Dbsys
             //{
             //    MessageBox.Show("User Not Exist");
             //}
+
+        }
+
+        private void Frm_Login_Load(object sender, EventArgs e)
+        {
 
         }
     }

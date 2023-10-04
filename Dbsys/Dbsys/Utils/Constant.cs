@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Dbsys
 {
+    public enum ErrorCode
+    {
+        Success = 0,
+        Error = 1
+    }
     public class Constant
     {
-        // Return type
-        public const int SUCESS = 0;
-        public const int ERROR  = 1;
-        //
-        public const String ConString = "SERVER=.\\SQLEXPRESS;DATABASE=ITDBSYS31;TRUSTED_CONNECTION=true";
+       
     }
 }

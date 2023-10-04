@@ -16,7 +16,7 @@ namespace Dbsys.AppData
     {
         public UserAccount()
         {
-            this.userInformation = new HashSet<userInformation>();
+            this.UserInformation = new HashSet<UserInformation>();
         }
     
         public int userId { get; set; }
@@ -24,6 +24,6 @@ namespace Dbsys.AppData
         public string userPassword { get; set; }
         public string userStatus { get; set; }
     
-        public virtual ICollection<userInformation> userInformation { get; set; }
+        public virtual ICollection<UserInformation> UserInformation { get; set; }
     }
 }

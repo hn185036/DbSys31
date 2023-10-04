@@ -14,9 +14,8 @@ namespace Dbsys
 {
     public partial class Frm_UserEntry : Form
     {
-        DBSYSEntities db;
         UserRepository userRepo;
-        int userSelectedId = 0;
+        int? userSelectedId = null;
         public Frm_UserEntry()
         {
             InitializeComponent();
@@ -32,8 +31,7 @@ namespace Dbsys
 
         private void loadUser()
         {
-            db = new DBSYSEntities();
-            dgv_main.DataSource = db.UserAccount.ToList();
+            dgv_main.DataSource = userRepo.UserAccounts();
         }
 
         private void btnRegistion_Click(object sender, EventArgs e)
@@ -55,8 +53,14 @@ namespace Dbsys
                 return;
             }
 
-            int retValue = userRepo.NewUser(username, pass, ref strOutputMsg);
-            if (retValue == Constant.SUCESS)
+            // Create new object of USER_ACCOUNT
+            UserAccount newUserAcc = new UserAccount();
+            newUserAcc.userName = txtUsername.Text;
+            newUserAcc.userPassword = txtPassword.Text;
+            newUserAcc.userStatus = "Active";
+
+            ErrorCode retValue = userRepo.NewUser(newUserAcc, ref strOutputMsg);
+            if (retValue == ErrorCode.Success)
             {
                 //Clear the errors
                 errorProviderCustom.Clear();
@@ -71,9 +75,6 @@ namespace Dbsys
                 // error 
                 MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
-            
-            
         }
 
         private void dgv_main_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -108,21 +109,21 @@ namespace Dbsys
             String pass = txtPassword.Text;
             String strOutputMsg = "";
 
-            if (userSelectedId == 0)
+            if (userSelectedId == null)
             {
                 MessageBox.Show("No User Selected", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            int retValue = userRepo.RemoveUser(userSelectedId, ref strOutputMsg);
-            if (retValue == Constant.SUCESS)
+            ErrorCode retValue = userRepo.RemoveUser(userSelectedId, ref strOutputMsg);
+            if (retValue == ErrorCode.Success)
             {
                 //Clear the errors
                 errorProviderCustom.Clear();
                 MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadUser();
                 //reset the selected id
-                userSelectedId = 0;
+                userSelectedId = null;
 
                 txtPassword.Clear();
                 txtUsername.Clear();
@@ -158,16 +159,17 @@ namespace Dbsys
                 errorProviderCustom.SetError(txtPassword, "Empty Field!");
                 return;
             }
+            var userAccount = userRepo.GetUserByUsername(username);
 
-            int retValue = userRepo.UpdateUser(userSelectedId,username, pass, ref strOutputMsg);
-            if (retValue == Constant.SUCESS)
+            ErrorCode retValue = userRepo.UpdateUser(userSelectedId, userAccount, ref strOutputMsg);
+            if (retValue == ErrorCode.Success)
             {
                 //Clear the errors
                 errorProviderCustom.Clear();
                 MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadUser();
                 //reset the selected id
-                userSelectedId = 0;
+                userSelectedId = null;
 
 
                 txtPassword.Clear();

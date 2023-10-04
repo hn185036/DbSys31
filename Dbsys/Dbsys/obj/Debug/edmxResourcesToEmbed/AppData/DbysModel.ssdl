@@ -9,35 +9,35 @@
     <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
-  <EntityType Name="userInformation">
+  <EntityType Name="UserInformation">
     <Key>
       <PropertyRef Name="userInfoId" />
     </Key>
-    <Property Name="userInfoId" Type="int" Nullable="false" />
+    <Property Name="userInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="userInfLname" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="userInfFname" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="userInfAddress" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="userInfEmail" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="userId" Type="int" />
   </EntityType>
-  <Association Name="FK_userInformation_UserAccount">
+  <Association Name="FK__UserInfor__userI__1BFD2C07">
     <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
-    <End Role="userInformation" Type="Self.userInformation" Multiplicity="*" />
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserAccount">
         <PropertyRef Name="userId" />
       </Principal>
-      <Dependent Role="userInformation">
+      <Dependent Role="UserInformation">
         <PropertyRef Name="userId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="DBSYSModelStoreContainer">
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="userInformation" EntityType="Self.userInformation" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_userInformation_UserAccount" Association="Self.FK_userInformation_UserAccount">
+    <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__UserInfor__userI__1BFD2C07" Association="Self.FK__UserInfor__userI__1BFD2C07">
       <End Role="UserAccount" EntitySet="UserAccount" />
-      <End Role="userInformation" EntitySet="userInformation" />
+      <End Role="UserInformation" EntitySet="UserInformation" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

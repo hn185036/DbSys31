@@ -12,7 +12,7 @@ namespace Dbsys.AppData
     using System;
     using System.Collections.Generic;
     
-    public partial class userInformation
+    public partial class UserInformation
     {
         public int userInfoId { get; set; }
         public string userInfLname { get; set; }

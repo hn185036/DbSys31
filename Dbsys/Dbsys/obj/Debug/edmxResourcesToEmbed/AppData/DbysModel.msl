@@ -11,9 +11,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="userInformation">
-      <EntityTypeMapping TypeName="DBSYSModel.userInformation">
-        <MappingFragment StoreEntitySet="userInformation">
+    <EntitySetMapping Name="UserInformation">
+      <EntityTypeMapping TypeName="DBSYSModel.UserInformation">
+        <MappingFragment StoreEntitySet="UserInformation">
           <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="userInfEmail" ColumnName="userInfEmail" />
           <ScalarProperty Name="userInfAddress" ColumnName="userInfAddress" />

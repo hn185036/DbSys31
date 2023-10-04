@@ -6,8 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="5ba6b4505a7a4141ba9c39e83a8dbe66" Name="Diagram1">
         <EntityTypeShape EntityType="DBSYSModel.UserAccount" Width="1.5" PointX="0.75" PointY="1.125" />
-        <EntityTypeShape EntityType="DBSYSModel.userInformation" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="DBSYSModel.FK_userInformation_UserAccount" />
+        <EntityTypeShape EntityType="DBSYSModel.UserInformation" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="DBSYSModel.FK__UserInfor__userI__1BFD2C07" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

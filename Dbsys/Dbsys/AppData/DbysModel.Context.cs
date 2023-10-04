@@ -26,6 +26,6 @@ namespace Dbsys.AppData
         }
     
         public DbSet<UserAccount> UserAccount { get; set; }
-        public DbSet<userInformation> userInformation { get; set; }
+        public DbSet<UserInformation> UserInformation { get; set; }
     }
 }

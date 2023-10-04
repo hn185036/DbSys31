@@ -12,33 +12,22 @@ namespace Dbsys
     
     public class UserRepository
     {
-        DBSYSEntities db;
-
-        private String _connStr;
+        private DBSYSEntities db;
         public UserRepository()
         {
-            //_connStr  = Constant.ConString;
+            db = new DBSYSEntities();
         }
 
-        
-
-        public int NewUser(String a_Username, String a_Pass, ref String outMessage)
+        public ErrorCode NewUser(UserAccount aUserAccount, ref String outMessage)
         {
-            int retValue = Constant.ERROR;
+            ErrorCode retValue = ErrorCode.Error;
             try
             {
-                db = new DBSYSEntities();
-                // Create new object of USER_ACCOUNT
-                UserAccount newUserAcc = new UserAccount();
-                newUserAcc.userName = a_Username;
-                newUserAcc.userPassword = a_Pass;
-                newUserAcc.userStatus = "Active";
-                // Call the add() function to insert object
-                db.UserAccount.Add(newUserAcc);
+                db.UserAccount.Add(aUserAccount);
                 db.SaveChanges();
 
                 outMessage = "Inserted";
-                retValue = Constant.SUCESS;
+                retValue = ErrorCode.Success;
             }
             catch (Exception ex)
             {
@@ -50,94 +39,67 @@ namespace Dbsys
 
 
 
-        public int UpdateUser(int userId, String a_Username, String a_Pass, ref String outMessage)
+        public ErrorCode UpdateUser(int? userId, UserAccount aUserAccount, ref String outMessage)
         {
-            int retValue = Constant.ERROR;
+            ErrorCode retValue = ErrorCode.Error;
             try
             {
-                db = new DBSYSEntities();
                 // Find the user with id
                 UserAccount user = db.UserAccount.Where(m => m.userId == userId).FirstOrDefault();
                 // Update the value of the retrieved user
-                user.userName = a_Username;
-                user.userPassword = a_Pass;
+                user.userName = aUserAccount.userName;
+                user.userPassword = aUserAccount.userPassword;
 
                 db.SaveChanges();       // Execute the update
 
                 outMessage = "Updated";
-                retValue = Constant.SUCESS;
+                retValue = ErrorCode.Success;
             }
             catch (Exception ex)
             {
                 outMessage = ex.Message;
-                retValue = Constant.ERROR;
+                retValue = ErrorCode.Success;
                 MessageBox.Show(ex.Message);
             }
             return retValue;
 
         }
 
-        public int RemoveUser(int userId, ref String outMessage)
+        public ErrorCode RemoveUser(int? userId, ref String outMessage)
         {
-            int retValue = Constant.ERROR;
+            ErrorCode retValue = ErrorCode.Error;
             try
             {
-
-                db = new DBSYSEntities();
-
                 UserAccount user = db.UserAccount.Where(m => m.userId == userId).FirstOrDefault();
                 // Remove the user
                 db.UserAccount.Remove(user);
                 db.SaveChanges();       // Execute the update
 
                 outMessage = "Deleted";
-                retValue = Constant.SUCESS;
+                retValue = ErrorCode.Success;
             }
             catch (Exception ex)
             {
                 outMessage = ex.Message;
-                retValue = Constant.ERROR;
+                retValue = ErrorCode.Error;
                 MessageBox.Show(ex.Message);
             }
             return retValue;
-
         }
 
-        /*
-        public List<vw_all_user_account> ListUsers()
+        public UserAccount GetUserByUsername(String username)
         {
-            List<vw_all_user_account> userList = new List<vw_all_user_account>();
-            try
-            {
-                db = new ITDBSYS31Entities();
+            // re-initialize db object because sometimes data in the list not updated
+            db = new DBSYSEntities();
 
-                userList = db.vw_all_user_account.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return userList;
+            return db.UserAccount.Where(m => m.userName == username).FirstOrDefault();
+        }
+        public List<UserAccount> UserAccounts()
+        {
+            db = new DBSYSEntities();
+
+            return db.UserAccount.ToList();
         }
        
-
-        public USER_ACCOUNT GetUserByUsername(String username)
-        {
-            USER_ACCOUNT ua = null;
-            try
-            {
-                db = new ITDBSYS31Entities();
-                // retrieve the user account
-                ua = db.USER_ACCOUNT.Where(m => m.userName == username).FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-
-            return ua;
-        } 
-         */
     }
 }
