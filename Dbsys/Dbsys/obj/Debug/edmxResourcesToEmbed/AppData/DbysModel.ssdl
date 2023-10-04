@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBSYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userInformation">
+    <Key>
+      <PropertyRef Name="userInfoId" />
+    </Key>
+    <Property Name="userInfoId" Type="int" Nullable="false" />
+    <Property Name="userInfLname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userInfFname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userInfAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userInfEmail" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="userId" Type="int" />
+  </EntityType>
+  <Association Name="FK_userInformation_UserAccount">
+    <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+    <End Role="userInformation" Type="Self.userInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userInformation">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBSYSModelStoreContainer">
+    <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userInformation" EntityType="Self.userInformation" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_userInformation_UserAccount" Association="Self.FK_userInformation_UserAccount">
+      <End Role="UserAccount" EntitySet="UserAccount" />
+      <End Role="userInformation" EntitySet="userInformation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

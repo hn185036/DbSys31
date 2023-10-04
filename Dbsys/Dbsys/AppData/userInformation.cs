@@ -10,15 +10,17 @@
 namespace Dbsys.AppData
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_getUserById_Result
+    public partial class userInformation
     {
-        public int User_ID { get; set; }
-        public string Lastname { get; set; }
-        public string Password { get; set; }
-        public int userAddressId { get; set; }
-        public string userAddressName { get; set; }
-        public string userAddressType { get; set; }
+        public int userInfoId { get; set; }
+        public string userInfLname { get; set; }
+        public string userInfFname { get; set; }
+        public string userInfAddress { get; set; }
+        public string userInfEmail { get; set; }
         public Nullable<int> userId { get; set; }
+    
+        public virtual UserAccount UserAccount { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Dbsys
     
     public class UserRepository
     {
-        ITDBSYS31Entities db;
+        DBSYSEntities db;
 
         private String _connStr;
         public UserRepository()
@@ -20,19 +20,21 @@ namespace Dbsys
             //_connStr  = Constant.ConString;
         }
 
+        
+
         public int NewUser(String a_Username, String a_Pass, ref String outMessage)
         {
             int retValue = Constant.ERROR;
             try
             {
-                db = new ITDBSYS31Entities();
+                db = new DBSYSEntities();
                 // Create new object of USER_ACCOUNT
-                USER_ACCOUNT newUserAcc = new USER_ACCOUNT();
+                UserAccount newUserAcc = new UserAccount();
                 newUserAcc.userName = a_Username;
                 newUserAcc.userPassword = a_Pass;
                 newUserAcc.userStatus = "Active";
                 // Call the add() function to insert object
-                db.USER_ACCOUNT.Add(newUserAcc);
+                db.UserAccount.Add(newUserAcc);
                 db.SaveChanges();
 
                 outMessage = "Inserted";
@@ -53,9 +55,9 @@ namespace Dbsys
             int retValue = Constant.ERROR;
             try
             {
-                db = new ITDBSYS31Entities();
+                db = new DBSYSEntities();
                 // Find the user with id
-                USER_ACCOUNT user = db.USER_ACCOUNT.Where(m => m.userId == userId).FirstOrDefault();
+                UserAccount user = db.UserAccount.Where(m => m.userId == userId).FirstOrDefault();
                 // Update the value of the retrieved user
                 user.userName = a_Username;
                 user.userPassword = a_Pass;
@@ -81,11 +83,11 @@ namespace Dbsys
             try
             {
 
-                db = new ITDBSYS31Entities();
+                db = new DBSYSEntities();
 
-                USER_ACCOUNT user = db.USER_ACCOUNT.Where(m => m.userId == userId).FirstOrDefault();
+                UserAccount user = db.UserAccount.Where(m => m.userId == userId).FirstOrDefault();
                 // Remove the user
-                db.USER_ACCOUNT.Remove(user);
+                db.UserAccount.Remove(user);
                 db.SaveChanges();       // Execute the update
 
                 outMessage = "Deleted";
@@ -101,6 +103,7 @@ namespace Dbsys
 
         }
 
+        /*
         public List<vw_all_user_account> ListUsers()
         {
             List<vw_all_user_account> userList = new List<vw_all_user_account>();
@@ -116,6 +119,7 @@ namespace Dbsys
             }
             return userList;
         }
+       
 
         public USER_ACCOUNT GetUserByUsername(String username)
         {
@@ -134,5 +138,6 @@ namespace Dbsys
 
             return ua;
         } 
+         */
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dbsys.AppData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace Dbsys
 {
     public partial class Frm_UserEntry : Form
     {
+        DBSYSEntities db;
         UserRepository userRepo;
         int userSelectedId = 0;
         public Frm_UserEntry()
@@ -30,7 +32,8 @@ namespace Dbsys
 
         private void loadUser()
         {
-            dgv_main.DataSource = userRepo.ListUsers();
+            db = new DBSYSEntities();
+            dgv_main.DataSource = db.UserAccount.ToList();
         }
 
         private void btnRegistion_Click(object sender, EventArgs e)

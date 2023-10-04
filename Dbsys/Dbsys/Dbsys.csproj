@@ -54,29 +54,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppData\DbsysModel.Context.cs">
+    <Compile Include="AppData\DbysModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbsysModel.Context.tt</DependentUpon>
+      <DependentUpon>DbysModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\DbsysModel.cs">
+    <Compile Include="AppData\DbysModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbsysModel.tt</DependentUpon>
+      <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\DbsysModel.Designer.cs">
+    <Compile Include="AppData\DbysModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbsysModel.edmx</DependentUpon>
+      <DependentUpon>DbysModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="AppData\sp_getUserById_Result.cs">
-      <DependentUpon>DbsysModel.tt</DependentUpon>
+    <Compile Include="AppData\UserAccount.cs">
+      <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\USER_ACCOUNT.cs">
-      <DependentUpon>DbsysModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\vw_all_user_account.cs">
-      <DependentUpon>DbsysModel.tt</DependentUpon>
+    <Compile Include="AppData\userInformation.cs">
+      <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Frm_UserEntry.cs">
       <SubType>Form</SubType>
@@ -110,12 +107,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="AppData\DbsysModel.edmx">
+    <EntityDeploy Include="AppData\DbysModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbsysModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbysModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AppData\DbsysModel.edmx.diagram">
-      <DependentUpon>DbsysModel.edmx</DependentUpon>
+    <None Include="AppData\DbysModel.edmx.diagram">
+      <DependentUpon>DbysModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -132,22 +129,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppData\DbsysModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbsysModel.edmx</DependentUpon>
-      <LastGenOutput>DbsysModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AppData\DbsysModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbsysModel.edmx</DependentUpon>
-      <LastGenOutput>DbsysModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\DbysModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbysModel.edmx</DependentUpon>
+      <LastGenOutput>DbysModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AppData\DbysModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbysModel.edmx</DependentUpon>
+      <LastGenOutput>DbysModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

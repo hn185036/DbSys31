@@ -4,9 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2002b7c61d2743588bf4916d70698207" Name="Diagram1">
-        <EntityTypeShape EntityType="ITDBSYS31Model.USER_ACCOUNT" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ITDBSYS31Model.vw_all_user_account" Width="1.5" PointX="2.75" PointY="0.75" />
+      <Diagram DiagramId="5ba6b4505a7a4141ba9c39e83a8dbe66" Name="Diagram1">
+        <EntityTypeShape EntityType="DBSYSModel.UserAccount" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="DBSYSModel.userInformation" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="DBSYSModel.FK_userInformation_UserAccount" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

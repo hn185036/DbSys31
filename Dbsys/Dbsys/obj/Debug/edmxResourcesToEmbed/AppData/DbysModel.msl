@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBSYSModelStoreContainer" CdmEntityContainer="DBSYSEntities">
+    <EntitySetMapping Name="UserAccount">
+      <EntityTypeMapping TypeName="DBSYSModel.UserAccount">
+        <MappingFragment StoreEntitySet="UserAccount">
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userInformation">
+      <EntityTypeMapping TypeName="DBSYSModel.userInformation">
+        <MappingFragment StoreEntitySet="userInformation">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userInfEmail" ColumnName="userInfEmail" />
+          <ScalarProperty Name="userInfAddress" ColumnName="userInfAddress" />
+          <ScalarProperty Name="userInfFname" ColumnName="userInfFname" />
+          <ScalarProperty Name="userInfLname" ColumnName="userInfLname" />
+          <ScalarProperty Name="userInfoId" ColumnName="userInfoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

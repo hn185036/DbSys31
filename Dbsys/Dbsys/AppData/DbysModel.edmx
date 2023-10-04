@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBSYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userInformation">
+          <Key>
+            <PropertyRef Name="userInfoId" />
+          </Key>
+          <Property Name="userInfoId" Type="int" Nullable="false" />
+          <Property Name="userInfLname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userInfFname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userInfAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userInfEmail" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="userId" Type="int" />
+        </EntityType>
+        <Association Name="FK_userInformation_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="userInformation" Type="Self.userInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="userInformation">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSYSModelStoreContainer">
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userInformation" EntityType="Self.userInformation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_userInformation_UserAccount" Association="Self.FK_userInformation_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="userInformation" EntitySet="userInformation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBSYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBSYSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserAccount" EntityType="DBSYSModel.UserAccount" />
+          <EntitySet Name="userInformation" EntityType="DBSYSModel.userInformation" />
+          <AssociationSet Name="FK_userInformation_UserAccount" Association="DBSYSModel.FK_userInformation_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="userInformation" EntitySet="userInformation" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="userInformation" Relationship="DBSYSModel.FK_userInformation_UserAccount" FromRole="UserAccount" ToRole="userInformation" />
+        </EntityType>
+        <EntityType Name="userInformation">
+          <Key>
+            <PropertyRef Name="userInfoId" />
+          </Key>
+          <Property Name="userInfoId" Type="Int32" Nullable="false" />
+          <Property Name="userInfLname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userInfFname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userInfAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userInfEmail" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int32" />
+          <NavigationProperty Name="UserAccount" Relationship="DBSYSModel.FK_userInformation_UserAccount" FromRole="userInformation" ToRole="UserAccount" />
+        </EntityType>
+        <Association Name="FK_userInformation_UserAccount">
+          <End Type="DBSYSModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="DBSYSModel.userInformation" Role="userInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="userInformation">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBSYSModelStoreContainer" CdmEntityContainer="DBSYSEntities">
+          <EntitySetMapping Name="UserAccount">
+            <EntityTypeMapping TypeName="DBSYSModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userInformation">
+            <EntityTypeMapping TypeName="DBSYSModel.userInformation">
+              <MappingFragment StoreEntitySet="userInformation">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userInfEmail" ColumnName="userInfEmail" />
+                <ScalarProperty Name="userInfAddress" ColumnName="userInfAddress" />
+                <ScalarProperty Name="userInfFname" ColumnName="userInfFname" />
+                <ScalarProperty Name="userInfLname" ColumnName="userInfLname" />
+                <ScalarProperty Name="userInfoId" ColumnName="userInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

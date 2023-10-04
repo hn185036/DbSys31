@@ -35,16 +35,16 @@ namespace Dbsys
                 return;
             }
 
-            USER_ACCOUNT userLogin = userRepo.GetUserByUsername(txtUsername.Text);
-            // User exist
-            if (userLogin != null)
-            {
+            //UserAccount userLogin = userRepo.GetUserByUsername(txtUsername.Text);
+            //// User exist
+            //if (userLogin != null)
+            //{
 
-            }
-            else
-            {
-                MessageBox.Show("User Not Exist");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("User Not Exist");
+            //}
 
         }
     }
