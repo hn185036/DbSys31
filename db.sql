@@ -32,3 +32,11 @@ CREATE TABLE [dbo].[Role](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+USE [DBSYS]
+GO
+SET IDENTITY_INSERT [dbo].[Role] ON 
+
+INSERT [dbo].[Role] ([roleId], [roleName], [roleDescription]) VALUES (1, N'Student', N'Student ')
+INSERT [dbo].[Role] ([roleId], [roleName], [roleDescription]) VALUES (2, N'Teacher', N'Teacher')
+INSERT [dbo].[Role] ([roleId], [roleName], [roleDescription]) VALUES (3, N'Admin', N'Admin')
+SET IDENTITY_INSERT [dbo].[Role] OFF
