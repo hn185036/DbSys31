@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DBSYSModelStoreContainer" CdmEntityContainer="DBSYSEntities">
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="DBSYSModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserAccount">
       <EntityTypeMapping TypeName="DBSYSModel.UserAccount">
         <MappingFragment StoreEntitySet="UserAccount">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
           <ScalarProperty Name="userStatus" ColumnName="userStatus" />
           <ScalarProperty Name="userPassword" ColumnName="userPassword" />
           <ScalarProperty Name="userName" ColumnName="userName" />

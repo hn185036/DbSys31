@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dbsys.AppData;
+using Dbsys.Forms;
 
 namespace Dbsys
 {
@@ -34,24 +35,53 @@ namespace Dbsys
                 errorProviderCustom.SetError(txtPassword, "Empty Field!");
                 return;
             }
-         
-            // Call the add() function to insert object
-            //UserAccount userLogin = userRepo.GetUserByUsername(txtUsername.Text);
-            //// User exist
-            //if (userLogin != null)
-            //{
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("User Not Exist");
-            //}
+            var userLogged = userRepo.GetUserByUsername(txtUsername.Text);
+
+            if (userLogged != null)
+            {
+                if (userLogged.userPassword.Equals(txtPassword.Text))
+                {
+                    if (userLogged.roleId == 1)
+                    {
+                        new Frm_Student_Dashboard().Show();
+                        this.Hide();
+                    }
+                    if (userLogged.roleId == 2)
+                    {
+                        new Frm_Teacher_DashBoard().Show();
+                        this.Hide();
+                    }
+                    if (userLogged.roleId == 3)
+                    {
+                        new Frm_Teacher_DashBoard().Show();
+                        this.Hide();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Password");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Username not found");
+            }
 
         }
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabelRigester_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (var frm = new Frm_Register())
+            {
+                frm.ShowDialog();
+                txtUsername.Text = frm.username;
+            }
         }
     }
 }

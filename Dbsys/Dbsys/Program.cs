@@ -16,7 +16,7 @@ namespace Dbsys
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_UserEntry());
+            Application.Run(new Frm_Login());
         }
     }
 }

@@ -12,19 +12,10 @@ namespace Dbsys.AppData
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class Role
     {
-        public UserAccount()
-        {
-            this.UserInformation = new HashSet<UserInformation>();
-        }
-    
-        public int userId { get; set; }
-        public string userName { get; set; }
-        public string userPassword { get; set; }
-        public string userStatus { get; set; }
-        public Nullable<int> roleId { get; set; }
-    
-        public virtual ICollection<UserInformation> UserInformation { get; set; }
+        public int roleId { get; set; }
+        public string roleName { get; set; }
+        public string roleDescription { get; set; }
     }
 }

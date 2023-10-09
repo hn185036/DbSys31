@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.errorProviderCustom = new System.Windows.Forms.ErrorProvider(this.components);
+            this.linkLabelRigester = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCustom)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,23 @@
             // 
             this.errorProviderCustom.ContainerControl = this;
             // 
+            // linkLabelRigester
+            // 
+            this.linkLabelRigester.AutoSize = true;
+            this.linkLabelRigester.Location = new System.Drawing.Point(1, 171);
+            this.linkLabelRigester.Name = "linkLabelRigester";
+            this.linkLabelRigester.Size = new System.Drawing.Size(46, 13);
+            this.linkLabelRigester.TabIndex = 14;
+            this.linkLabelRigester.TabStop = true;
+            this.linkLabelRigester.Text = "Register";
+            this.linkLabelRigester.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRigester_LinkClicked);
+            // 
             // Frm_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(264, 196);
+            this.Controls.Add(this.linkLabelRigester);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.ckShowPass);
             this.Controls.Add(this.txtPassword);
@@ -125,5 +138,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.ErrorProvider errorProviderCustom;
+        private System.Windows.Forms.LinkLabel linkLabelRigester;
     }
 }

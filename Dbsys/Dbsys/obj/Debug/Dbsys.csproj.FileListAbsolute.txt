@@ -20,3 +20,4 @@ C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\Db
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\Dbsys.pdb
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\EntityFramework.dll
 C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\bin\Debug\EntityFramework.xml
+C:\Users\hn185036\OneDrive - NCR Corporation\Documents\Task\Class\Application\DbSys31\Dbsys\Dbsys\obj\Debug\Dbsys.Forms.Frm_Register.resources
