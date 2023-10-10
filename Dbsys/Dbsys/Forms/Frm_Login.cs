@@ -42,20 +42,26 @@ namespace Dbsys
             {
                 if (userLogged.userPassword.Equals(txtPassword.Text))
                 {
-                    if (userLogged.roleId == 1)
+                    switch ((Role)userLogged.roleId)
                     {
-                        new Frm_Student_Dashboard().Show();
-                        this.Hide();
-                    }
-                    if (userLogged.roleId == 2)
-                    {
-                        new Frm_Teacher_DashBoard().Show();
-                        this.Hide();
-                    }
-                    if (userLogged.roleId == 3)
-                    {
-                        new Frm_Teacher_DashBoard().Show();
-                        this.Hide();
+                        case Role.Student:
+                            // Load student Dashboard
+                            new Frm_Student_Dashboard().Show();
+                            this.Hide();
+                            break;
+                        case Role.Teacher:
+                            // Load Teacher Dashboard
+                            new Frm_Teacher_DashBoard().Show();
+                            this.Hide();
+                            break;
+                        case Role.Admin:
+                            // Load Admin Dashboard
+                            new Frm_Admin_Dashboard().Show();
+                            this.Hide();
+                            break;
+                        default:
+                            MessageBox.Show("User has no role!");
+                            break;
                     }
                 }
                 else
@@ -77,11 +83,17 @@ namespace Dbsys
 
         private void linkLabelRigester_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (var frm = new Frm_Register())
-            {
-                frm.ShowDialog();
-                txtUsername.Text = frm.username;
-            }
+            // Instantiate new object of class Frm_Register
+            Frm_Register frm = new Frm_Register();
+            frm.ShowDialog();
+
+            txtUsername.Text = frm.username;
+
+            //using (var frm = new Frm_Register())
+            //{
+            //    frm.ShowDialog();
+            //    txtUsername.Text = frm.username;
+            //}
         }
     }
 }

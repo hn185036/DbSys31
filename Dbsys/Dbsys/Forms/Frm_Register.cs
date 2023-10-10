@@ -34,7 +34,9 @@ namespace Dbsys.Forms
 
         public void loadCbBoxRole()
         {
+            // SELECT * FROM ROLE
             var roles = db.Role.ToList();
+
             cbBoxRole.ValueMember = "roleId";
             cbBoxRole.DisplayMember = "roleName";
             cbBoxRole.DataSource = roles;
@@ -43,6 +45,8 @@ namespace Dbsys.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            //String cbResultSelected = cbBoxRole.SelectedValue.ToString();
+
             if (String.IsNullOrEmpty(txtUsername.Text))
             {
                 errorProvider1.SetError(txtUsername, "Empty field");
@@ -78,7 +82,9 @@ namespace Dbsys.Forms
             nUserAccount.userPassword = txtPassword.Text;
             nUserAccount.roleId = (Int32)cbBoxRole.SelectedValue;
             nUserAccount.userStatus = "Active";
+
             username = txtUsername.Text;
+
             db.UserAccount.Add(nUserAccount);
             db.SaveChanges();
 

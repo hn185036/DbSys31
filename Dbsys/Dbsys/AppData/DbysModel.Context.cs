@@ -28,5 +28,6 @@ namespace Dbsys.AppData
         public DbSet<Role> Role { get; set; }
         public DbSet<UserAccount> UserAccount { get; set; }
         public DbSet<UserInformation> UserInformation { get; set; }
+        public DbSet<vw_all_user_role> vw_all_user_role { get; set; }
     }
 }

@@ -11,6 +11,14 @@ namespace Dbsys
         Success = 0,
         Error = 1
     }
+
+    public enum Role
+    {
+        Student = 1,
+        Teacher = 2,
+        Admin = 3
+
+    }
     public class Constant
     {
        

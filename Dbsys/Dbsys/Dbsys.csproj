@@ -78,11 +78,32 @@
     <Compile Include="AppData\UserInformation.cs">
       <DependentUpon>DbysModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppData\vw_all_user_role.cs">
+      <DependentUpon>DbysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frm_Admin_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_Admin_Dashboard.Designer.cs">
+      <DependentUpon>Frm_Admin_Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Frm_Register.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Frm_Register.Designer.cs">
       <DependentUpon>Frm_Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frm_Student_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_Student_Dashboard.Designer.cs">
+      <DependentUpon>Frm_Student_Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Frm_Teacher_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_Teacher_DashBoard.Designer.cs">
+      <DependentUpon>Frm_Teacher_DashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Frm_UserEntry.cs">
       <SubType>Form</SubType>
@@ -101,6 +122,9 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Func.cs" />
+    <EmbeddedResource Include="Forms\Frm_Admin_Dashboard.resx">
+      <DependentUpon>Frm_Admin_Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_Register.resx">
       <DependentUpon>Frm_Register.cs</DependentUpon>
     </EmbeddedResource>

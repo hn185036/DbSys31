@@ -88,9 +88,9 @@
             // cbBoxRole
             // 
             this.cbBoxRole.FormattingEnabled = true;
-            this.cbBoxRole.Location = new System.Drawing.Point(25, 157);
+            this.cbBoxRole.Location = new System.Drawing.Point(27, 157);
             this.cbBoxRole.Name = "cbBoxRole";
-            this.cbBoxRole.Size = new System.Drawing.Size(203, 21);
+            this.cbBoxRole.Size = new System.Drawing.Size(201, 21);
             this.cbBoxRole.TabIndex = 17;
             this.cbBoxRole.SelectedIndexChanged += new System.EventHandler(this.cbBoxRole_SelectedIndexChanged);
             // 

@@ -34,6 +34,19 @@
           <Property Name="userInfEmail" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="userId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DBSYS.dbo.vw_all_user_role' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_all_user_role">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK__UserInfor__userI__1BFD2C07">
           <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
           <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="*" />
@@ -50,6 +63,14 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_all_user_role" EntityType="Self.vw_all_user_role" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_all_user_role].[UserId] AS [UserId], 
+[vw_all_user_role].[Username] AS [Username], 
+[vw_all_user_role].[Password] AS [Password], 
+[vw_all_user_role].[Role] AS [Role]
+FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__UserInfor__userI__1BFD2C07" Association="Self.FK__UserInfor__userI__1BFD2C07">
             <End Role="UserAccount" EntitySet="UserAccount" />
             <End Role="UserInformation" EntitySet="UserInformation" />
@@ -67,6 +88,7 @@
             <End Role="UserAccount" EntitySet="UserAccount" />
             <End Role="UserInformation" EntitySet="UserInformation" />
           </AssociationSet>
+          <EntitySet Name="vw_all_user_role" EntityType="DBSYSModel.vw_all_user_role" />
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -111,6 +133,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vw_all_user_role">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -146,6 +179,16 @@
                 <ScalarProperty Name="userInfFname" ColumnName="userInfFname" />
                 <ScalarProperty Name="userInfLname" ColumnName="userInfLname" />
                 <ScalarProperty Name="userInfoId" ColumnName="userInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_all_user_role">
+            <EntityTypeMapping TypeName="DBSYSModel.vw_all_user_role">
+              <MappingFragment StoreEntitySet="vw_all_user_role">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
