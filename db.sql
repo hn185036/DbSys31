@@ -7,6 +7,7 @@ CREATE TABLE UserAccount (
 userId integer IDENTITY(1,1) primary key,
 userName varchar (50) not null,
 userPassword varchar (50) not null,
+roleId int,
 userStatus varchar (10) not NULL default 'ACTIVE',
 );
 --To view the user account table
