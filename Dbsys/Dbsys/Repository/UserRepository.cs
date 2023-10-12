@@ -87,25 +87,50 @@ namespace Dbsys
             return retValue;
         }
 
+        public ErrorCode CreateUserUsingStoredProf(String username, String password, int role, String status, int createdBy, ref String szResponse)
+        {
+            try
+            {
+                using (db = new DBSYSEntities())
+                {
+                    // Call the create stored procedure
+                    //
+                    db.sp_CreateUser(username, password, role, status, createdBy);
+                    szResponse = "Created";
+                    return ErrorCode.Success;
+                }
+            }
+            catch (Exception ex)
+            {
+                szResponse = ex.Message;
+                return ErrorCode.Error;    
+            }
+        }
+
+
         public UserAccount GetUserByUsername(String username)
         {
             // re-initialize db object because sometimes data in the list not updated
-            db = new DBSYSEntities();
-            // SELECT TOP 1 * FROM USERACCOUNT WHERE userName == username
-            return db.UserAccount.Where(s => s.userName == username).FirstOrDefault();
+            using (db = new DBSYSEntities())
+            {
+                // SELECT TOP 1 * FROM USERACCOUNT WHERE userName == username
+                return db.UserAccount.Where(s => s.userName == username).FirstOrDefault();
+            }    
         }
         public List<UserAccount> UserAccounts()
         {
-            db = new DBSYSEntities();
-
-            return db.UserAccount.ToList();
+            using (db = new DBSYSEntities())
+            {
+                return db.UserAccount.ToList();
+            }  
         }
 
         public List<vw_all_user_role> AllUserRole()
         {
-            db = new DBSYSEntities();
-
-            return db.vw_all_user_role.ToList();
+            using (db = new DBSYSEntities())
+            {
+                return db.vw_all_user_role.ToList();
+            }
         }
 
     }

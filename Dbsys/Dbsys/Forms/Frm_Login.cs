@@ -42,6 +42,9 @@ namespace Dbsys
             {
                 if (userLogged.userPassword.Equals(txtPassword.Text))
                 {
+                    // Assigned to a singleton
+                    UserLogged.GetInstance().UserAccount = userLogged;
+
                     switch ((Role)userLogged.roleId)
                     {
                         case Role.Student:

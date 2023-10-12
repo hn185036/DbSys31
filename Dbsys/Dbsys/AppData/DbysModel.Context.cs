@@ -12,6 +12,9 @@ namespace Dbsys.AppData
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class DBSYSEntities : DbContext
     {
@@ -29,5 +32,30 @@ namespace Dbsys.AppData
         public DbSet<UserAccount> UserAccount { get; set; }
         public DbSet<UserInformation> UserInformation { get; set; }
         public DbSet<vw_all_user_role> vw_all_user_role { get; set; }
+    
+        public virtual int sp_CreateUser(string username, string password, Nullable<int> role, string status, Nullable<int> createdBy)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var roleParameter = role.HasValue ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("createdBy", createdBy) :
+                new ObjectParameter("createdBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateUser", usernameParameter, passwordParameter, roleParameter, statusParameter, createdByParameter);
+        }
     }
 }

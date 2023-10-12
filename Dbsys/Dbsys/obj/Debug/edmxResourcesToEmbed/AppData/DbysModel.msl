@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DBSYSModelStoreContainer" CdmEntityContainer="DBSYSEntities">
+    <FunctionImportMapping FunctionImportName="sp_CreateUser" FunctionName="DBSYSModel.Store.sp_CreateUser" />
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="DBSYSModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -13,6 +14,7 @@
     <EntitySetMapping Name="UserAccount">
       <EntityTypeMapping TypeName="DBSYSModel.UserAccount">
         <MappingFragment StoreEntitySet="UserAccount">
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
           <ScalarProperty Name="roleId" ColumnName="roleId" />
           <ScalarProperty Name="userStatus" ColumnName="userStatus" />
           <ScalarProperty Name="userPassword" ColumnName="userPassword" />

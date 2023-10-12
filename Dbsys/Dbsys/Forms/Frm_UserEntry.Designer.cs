@@ -39,6 +39,10 @@
             this.ckShowPass = new System.Windows.Forms.CheckBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.errorProviderCustom = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCustom)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +58,7 @@
             // 
             // btnRegistion
             // 
-            this.btnRegistion.Location = new System.Drawing.Point(30, 181);
+            this.btnRegistion.Location = new System.Drawing.Point(30, 337);
             this.btnRegistion.Name = "btnRegistion";
             this.btnRegistion.Size = new System.Drawing.Size(203, 23);
             this.btnRegistion.TabIndex = 1;
@@ -72,16 +76,16 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(30, 67);
+            this.txtPassword.Location = new System.Drawing.Point(30, 64);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(203, 20);
+            this.txtPassword.Size = new System.Drawing.Size(201, 20);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 51);
+            this.label2.Location = new System.Drawing.Point(27, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 3;
@@ -92,13 +96,13 @@
             this.dgv_main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_main.Location = new System.Drawing.Point(259, 12);
             this.dgv_main.Name = "dgv_main";
-            this.dgv_main.Size = new System.Drawing.Size(509, 264);
+            this.dgv_main.Size = new System.Drawing.Size(847, 409);
             this.dgv_main.TabIndex = 5;
             this.dgv_main.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_main_CellClick);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(30, 210);
+            this.btnUpdate.Location = new System.Drawing.Point(30, 366);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(203, 23);
             this.btnUpdate.TabIndex = 6;
@@ -109,7 +113,7 @@
             // ckShowPass
             // 
             this.ckShowPass.AutoSize = true;
-            this.ckShowPass.Location = new System.Drawing.Point(30, 94);
+            this.ckShowPass.Location = new System.Drawing.Point(30, 90);
             this.ckShowPass.Name = "ckShowPass";
             this.ckShowPass.Size = new System.Drawing.Size(102, 17);
             this.ckShowPass.TabIndex = 7;
@@ -119,7 +123,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(30, 239);
+            this.btnRemove.Location = new System.Drawing.Point(30, 395);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(203, 23);
             this.btnRemove.TabIndex = 8;
@@ -131,11 +135,52 @@
             // 
             this.errorProviderCustom.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Role";
+            // 
+            // cbRole
+            // 
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(32, 127);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(199, 21);
+            this.cbRole.TabIndex = 11;
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Active",
+            "InActive"});
+            this.cbStatus.Location = new System.Drawing.Point(34, 169);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(199, 21);
+            this.cbStatus.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(31, 153);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Status";
+            // 
             // Frm_UserEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 288);
+            this.ClientSize = new System.Drawing.Size(1118, 433);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbStatus);
+            this.Controls.Add(this.cbRole);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.ckShowPass);
             this.Controls.Add(this.btnUpdate);
@@ -167,6 +212,10 @@
         private System.Windows.Forms.CheckBox ckShowPass;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ErrorProvider errorProviderCustom;
+        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbStatus;
     }
 }
 

@@ -22,6 +22,7 @@
           <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="roleId" Type="int" />
+          <Property Name="createdBy" Type="int" />
         </EntityType>
         <EntityType Name="UserInformation">
           <Key>
@@ -59,6 +60,13 @@ warning 6002: The table/view 'DBSYS.dbo.vw_all_user_role' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdBy" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DBSYSModelStoreContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
@@ -81,14 +89,21 @@ FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
     <edmx:ConceptualModels>
       <Schema Namespace="DBSYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBSYSEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_CreateUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="createdBy" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Role" EntityType="DBSYSModel.Role" />
           <EntitySet Name="UserAccount" EntityType="DBSYSModel.UserAccount" />
           <EntitySet Name="UserInformation" EntityType="DBSYSModel.UserInformation" />
+          <EntitySet Name="vw_all_user_role" EntityType="DBSYSModel.vw_all_user_role" />
           <AssociationSet Name="FK__UserInfor__userI__1BFD2C07" Association="DBSYSModel.FK__UserInfor__userI__1BFD2C07">
             <End Role="UserAccount" EntitySet="UserAccount" />
             <End Role="UserInformation" EntitySet="UserInformation" />
           </AssociationSet>
-          <EntitySet Name="vw_all_user_role" EntityType="DBSYSModel.vw_all_user_role" />
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -107,6 +122,7 @@ FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
           <Property Name="userPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="userStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="roleId" Type="Int32" />
+          <Property Name="createdBy" Type="Int32" />
           <NavigationProperty Name="UserInformation" Relationship="DBSYSModel.FK__UserInfor__userI__1BFD2C07" FromRole="UserAccount" ToRole="UserInformation" />
         </EntityType>
         <EntityType Name="UserInformation">
@@ -121,6 +137,17 @@ FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
           <Property Name="userId" Type="Int32" />
           <NavigationProperty Name="UserAccount" Relationship="DBSYSModel.FK__UserInfor__userI__1BFD2C07" FromRole="UserInformation" ToRole="UserAccount" />
         </EntityType>
+        <EntityType Name="vw_all_user_role">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK__UserInfor__userI__1BFD2C07">
           <End Type="DBSYSModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
           <End Type="DBSYSModel.UserInformation" Role="UserInformation" Multiplicity="*" />
@@ -133,23 +160,13 @@ FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_all_user_role">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="Username" />
-            <PropertyRef Name="Password" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBSYSModelStoreContainer" CdmEntityContainer="DBSYSEntities">
+          <FunctionImportMapping FunctionImportName="sp_CreateUser" FunctionName="DBSYSModel.Store.sp_CreateUser" />
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="DBSYSModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -162,6 +179,7 @@ FROM [dbo].[vw_all_user_role] AS [vw_all_user_role]</DefiningQuery>
           <EntitySetMapping Name="UserAccount">
             <EntityTypeMapping TypeName="DBSYSModel.UserAccount">
               <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
                 <ScalarProperty Name="userStatus" ColumnName="userStatus" />
                 <ScalarProperty Name="userPassword" ColumnName="userPassword" />

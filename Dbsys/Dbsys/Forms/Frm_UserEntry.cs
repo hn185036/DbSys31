@@ -27,11 +27,25 @@ namespace Dbsys
             // Initialize the user repository
             userRepo = new UserRepository();
             loadUser();
+            loadCbRole();
+        }
+
+        private void loadCbRole()
+        {
+            using (var db = new DBSYSEntities())
+            {
+                var roles = db.Role.ToList();
+
+                cbRole.ValueMember = "roleId";
+                cbRole.DisplayMember = "roleName";
+                cbRole.DataSource = roles;
+            }
+
         }
 
         private void loadUser()
         {
-            dgv_main.DataSource = userRepo.UserAccounts();
+            dgv_main.DataSource = userRepo.AllUserRole();
         }
 
         private void btnRegistion_Click(object sender, EventArgs e)
@@ -53,13 +67,17 @@ namespace Dbsys
                 return;
             }
 
-            // Create new object of USER_ACCOUNT
-            UserAccount newUserAcc = new UserAccount();
-            newUserAcc.userName = txtUsername.Text;
-            newUserAcc.userPassword = txtPassword.Text;
-            newUserAcc.userStatus = "Active";
+            /***************** YOUR CODE HERE ***********************/
+            // Write a stored procedure in the database called "sp_CreateUser"
+            // Refer to the UserRepository Class
+            // Already Created the function 
+            //
+             
 
-            ErrorCode retValue = userRepo.NewUser(newUserAcc, ref strOutputMsg);
+            // Get from the UserLogged Instance User Account Assign during login
+            int createdBy = UserLogged.GetInstance().UserAccount.userId;
+            // Activity ----- Supply the specified stored procedure in the database 
+            ErrorCode retValue = userRepo.CreateUserUsingStoredProf(txtUsername.Text, txtPassword.Text, (Int32)cbRole.SelectedValue, cbStatus.Text, createdBy,ref strOutputMsg);
             if (retValue == ErrorCode.Success)
             {
                 //Clear the errors
@@ -75,6 +93,29 @@ namespace Dbsys
                 // error 
                 MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            // Create new object of USER_ACCOUNT
+            //UserAccount newUserAcc = new UserAccount();
+            //newUserAcc.userName = txtUsername.Text;
+            //newUserAcc.userPassword = txtPassword.Text;
+            //newUserAcc.userStatus = "Active";
+
+            //ErrorCode retValue = userRepo.NewUser(newUserAcc, ref strOutputMsg);
+            //if (retValue == ErrorCode.Success)
+            //{
+            //    //Clear the errors
+            //    errorProviderCustom.Clear();
+            //    MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    loadUser();
+
+            //    txtPassword.Clear();
+            //    txtUsername.Clear();
+            //}
+            //else
+            //{
+            //    // error 
+            //    MessageBox.Show(strOutputMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
         }
 
         private void dgv_main_CellClick(object sender, DataGridViewCellEventArgs e)

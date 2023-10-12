@@ -24,6 +24,7 @@ namespace Dbsys.AppData
         public string userPassword { get; set; }
         public string userStatus { get; set; }
         public Nullable<int> roleId { get; set; }
+        public Nullable<int> createdBy { get; set; }
     
         public virtual ICollection<UserInformation> UserInformation { get; set; }
     }
