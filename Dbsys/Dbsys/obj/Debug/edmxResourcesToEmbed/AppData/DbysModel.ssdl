@@ -55,13 +55,6 @@ warning 6002: The table/view 'DBSYS.dbo.vw_all_user_role' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="sp_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="username" Type="nvarchar" Mode="In" />
-    <Parameter Name="password" Type="nvarchar" Mode="In" />
-    <Parameter Name="role" Type="int" Mode="In" />
-    <Parameter Name="status" Type="nvarchar" Mode="In" />
-    <Parameter Name="createdBy" Type="int" Mode="In" />
-  </Function>
   <EntityContainer Name="DBSYSModelStoreContainer">
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
